@@ -13,17 +13,21 @@ public class Book {
     }
 
     //Метод возвращающий ответ на вопрос, является ли книга большой; книгу считаем большой, если в ней больше 500 страниц.
-    public String isBig() {
+    public boolean isBig() {
         if (pages > 500) {
-            return "-Да, больше 500 стр.";
-        } else return "-Нет, меньше 500 стр.";
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Метод возвращающий ответ на вопрос, содержится ли в описании книги (названии или в имени автора и фамилии) переданное параметром слово.
-    public String matches(String word) {
+    public boolean matches(String word) {
         if (title.contains(word) || author.name.contains(word) || author.surname.contains(word)) {
-            return "-Да содержится";
-        } else return "-Нет не содержится";
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Метод возвращающий оценку стоимости книги (целое число в рублях).
@@ -35,9 +39,9 @@ public class Book {
 
     //Дополнительный метод для вывода общей информации по книге и ответы на вопросы.
     public void informationBook(String word) {
-        System.out.println("[Название книги: " + title + "."
-                + author + " (Книга большая?: " + isBig() + ") "
-                + " {Поиск введенного слова: " + matches(word) + "} "
+        System.out.println("[Название книги: " + title + "." + author
+                + " (Книга большая?: " + (isBig() ? "Да, больше 500 стр." : "Нет, меньше 500 стр.") + ") "
+                + " {Введенное слово содержится?: " + (matches(word) ? "Да содержится" : "Нет не содержится") + "} "
                 + " Стоимость книги: " + estimatePrice() + " руб.");
     }
 }
